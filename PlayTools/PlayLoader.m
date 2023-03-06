@@ -158,10 +158,22 @@ static OSStatus pt_SecItemDelete(CFDictionaryRef query) {
     return retval;
 }
 
+// size_t SecKeyGetBlockSize(SecKeyRef key);
+static size_t pt_SecKeyGetBlockSize(SecKeyRef key) {
+    size_t retval;
+    if ([[PlaySettings shared] playChain]) {
+        retval = [PlayKeychain getBlockSize:key];
+    } else {
+        retval = SecKeyGetBlockSize(key);
+    }
+    return retval;
+}
+
 DYLD_INTERPOSE(pt_SecItemCopyMatching, SecItemCopyMatching)
 DYLD_INTERPOSE(pt_SecItemAdd, SecItemAdd)
 DYLD_INTERPOSE(pt_SecItemUpdate, SecItemUpdate)
 DYLD_INTERPOSE(pt_SecItemDelete, SecItemDelete)
+DYLD_INTERPOSE(pt_SecKeyGetBlockSize, SecKeyGetBlockSize)
 
 
 

@@ -164,4 +164,15 @@ public class PlayKeychain: NSObject {
 
         return errSecItemNotFound
     }
+
+    // Emulates SecKeyGetBlockSize
+    // size_t SecKeyGetBlockSize(SecKeyRef key);
+    @objc static public func getBlockSize(_ key: SecKey) -> Int {
+        // Get the key attributes
+        let keyAttributes = (SecKeyCopyAttributes(key) ?? [:]) as NSDictionary
+        // Get the key size
+        let keySize = keyAttributes[kSecAttrKeySizeInBits as String] as! Int // swiftlint:disable:this force_cast
+        return keySize / 8
+    }
+
 }
