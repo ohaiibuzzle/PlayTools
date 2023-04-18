@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 #import <PlayTools/PlayTools-Swift.h>
+#import "PleaseKillMySSL.h"
 
 __attribute__((visibility("hidden")))
 @interface PlayShadowLoader : NSObject
@@ -161,7 +162,8 @@ __attribute__((visibility("hidden")))
     [self debugLogger:@"PlayShadow is now loading"];
     if ([[PlaySettings shared] bypass]) [self loadJailbreakBypass];
     // if ([[PlaySettings shared] bypass]) [self loadEnvironmentBypass]; # disabled as it might be too powerful
-
+    if ([[PlaySettings shared] bypass]) unleash_ssl_hooks();
+    
     // Swizzle ATTrackingManager
     [objc_getClass("ATTrackingManager") swizzleClassMethod:@selector(requestTrackingAuthorizationWithCompletionHandler:) withMethod:@selector(pm_return_2_with_completion_handler:)];
     [objc_getClass("ATTrackingManager") swizzleClassMethod:@selector(trackingAuthorizationStatus) withMethod:@selector(pm_return_2)];
