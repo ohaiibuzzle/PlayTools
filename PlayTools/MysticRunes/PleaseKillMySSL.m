@@ -5,6 +5,11 @@
 //  Created by Venti on 18/04/2023.
 //
 
+/*
+ WARNING: Running unleash_ssl_hooks(); from your code is something that heaven forbids.
+ PLEASE DON'T F-ING DO IT
+ */
+
 #import <Foundation/Foundation.h>
 #import <Security/SecureTransport.h>
 #import "fishhook.h"

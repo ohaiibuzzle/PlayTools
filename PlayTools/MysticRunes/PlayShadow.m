@@ -162,7 +162,7 @@ __attribute__((visibility("hidden")))
     [self debugLogger:@"PlayShadow is now loading"];
     if ([[PlaySettings shared] bypass]) [self loadJailbreakBypass];
     // if ([[PlaySettings shared] bypass]) [self loadEnvironmentBypass]; # disabled as it might be too powerful
-    if ([[PlaySettings shared] bypass]) unleash_ssl_hooks();
+    if ([[PlaySettings shared] bypass]) unleash_ssl_hooks(); // Oh lordy help me
     
     // Swizzle ATTrackingManager
     [objc_getClass("ATTrackingManager") swizzleClassMethod:@selector(requestTrackingAuthorizationWithCompletionHandler:) withMethod:@selector(pm_return_2_with_completion_handler:)];
