@@ -27,8 +27,6 @@ let settings = PlaySettings.shared
 
     lazy var keymapping = settingsData.keymapping
 
-    lazy var mouseMapping = settingsData.mouseMapping
-
     lazy var notch = settingsData.notch
 
     lazy var sensitivity = settingsData.sensitivity / 100
@@ -71,11 +69,14 @@ let settings = PlaySettings.shared
     @objc lazy var windowFixMethod = settingsData.windowFixMethod
 
     @objc lazy var customScaler = settingsData.customScaler
+    
+    @objc lazy var rootWorkDir = settingsData.rootWorkDir
+    
+    @objc lazy var noKMOnInput = settingsData.noKMOnInput
 }
 
 struct AppSettingsData: Codable {
     var keymapping = true
-    var mouseMapping = true
     var sensitivity: Float = 50
 
     var disableTimeout = false
@@ -93,4 +94,6 @@ struct AppSettingsData: Codable {
     var playChainDebugging = false
     var inverseScreenValues = false
     var windowFixMethod = 0
+    var rootWorkDir = true
+    var noKMOnInput = false
 }
